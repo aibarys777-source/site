@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ALT University — новости</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;800&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f7;--card:#fff;--ink:#14213d;--mut:#5a6577;--acc:#2f5dff;--hl:#ffb703;--line:#d5dce8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1626;--card:#18213a;--ink:#e8edf7;--mut:#9aa6bd;--acc:#7c9bff;--line:#2a3554}}
+:root[data-theme="dark"]{--bg:#0f1626;--card:#18213a;--ink:#e8edf7;--mut:#9aa6bd;--acc:#7c9bff;--line:#2a3554}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Onest,system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+header{padding:28px 0 18px}
+.brand{font-weight:800;font-size:clamp(28px,6vw,46px);line-height:1.05;letter-spacing:-.02em;margin:0}
+.brand span{background:linear-gradient(transparent 62%,var(--hl) 62%)}
+.sub{color:var(--mut);margin:6px 0 0}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0 26px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+button,input{font:inherit;color:inherit}
+.tab{border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+input{border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:8px;min-width:200px}
+.layout{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:start}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+.top{background:var(--ink);color:var(--bg);border-radius:14px;padding:26px;margin-bottom:22px}
+.top h2{font-size:clamp(22px,4vw,32px);line-height:1.15;margin:8px 0 10px}
+.top p{margin:0;opacity:.85;font-family:"PT Serif",serif}
+.tag{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:6px;background:var(--hl);color:#14213d}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font-size:18px;line-height:1.25}
+.card time{color:var(--mut);font-size:14px}
+.card p{margin:0;font-family:"PT Serif",serif;color:var(--mut);font-size:15px}
+.more{margin-top:auto;text-decoration:none;align-self:flex-start;background:none;border:0;color:var(--acc);font-weight:600;cursor:pointer;padding:4px 0}
+.empty{color:var(--mut);padding:20px 0}
+aside h2{font-size:18px;margin:0 0 12px}
+.ev{color:inherit;text-decoration:none;display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.ev b{display:block}
+.ev span{color:var(--mut);font-size:14px}
+footer{margin:40px 0 24px;color:var(--mut);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1 class="brand">ALT <span>University</span></h1>
+<p class="sub">Новости университета имени Мухамеджана Тынышпаева, Алматы</p>
+<div class="bar">
+<div class="tabs" id="tabs" role="group" aria-label="Рубрики"></div>
+<input id="q" type="search" placeholder="Поиск по новостям" aria-label="Поиск по новостям">
+</div>
+</header>
+<div class="layout">
+<main>
+<section class="top" id="top"></section>
+<div class="grid" id="grid"></div>
+<p class="empty" id="empty" hidden>Ничего не найдено. Попробуйте другой запрос или рубрику.</p>
+</main>
+<aside>
+<h2>Быстрые ссылки</h2>
+<a class="ev" href="http://platonus.alt.edu.kz/"><div><b>Platonus</b><span>Личный кабинет студента</span></div></a>
+<a class="ev" href="https://lib.alt.edu.kz/"><div><b>Электронная библиотека</b><span>Книги и статьи</span></div></a>
+<a class="ev" href="https://alt.edu.kz/en/admission/"><div><b>Приёмная комиссия</b><span>Для абитуриентов</span></div></a>
+<a class="ev" href="https://alt.edu.kz/category/news/"><div><b>Все новости на alt.edu.kz</b><span>Официальный сайт вуза</span></div></a>
+<p class="sub">Алматы, ул. Шевченко, 97<br>+7 707 888 1931<br>info@alt.edu.kz</p>
+</aside>
+</div>
+<footer>Новости взяты с официального сайта alt.edu.kz.делал Берик Айбар </footer>
+</div>
+<script>
+const NEWS=[
+{c:"Абитуриентам",d:"2026-09-28",t:"Школьники из Тараза посетили ALT University",s:"25 сентября учащиеся элитной школы Jas Tamir из Тараза приехали на экскурсию по университету.",u:"https://alt.edu.kz/en/news/from-first-impressions-to-career-choices-alt-university-hosts-campus-tour-for-school-students-from-taraz/"},
+{c:"Рейтинги",d:"2026-09-25",t:"ALT University вошёл в топ-35% вузов Казахстана в UI GreenMetric 2026",s:"Итоги международного рейтинга устойчивого развития университетов объявили 23 сентября.",u:"https://alt.edu.kz/en/news/alt-university-ranks-in-the-top-35-of-kazakhstani-universities-in-ui-greenmetric-2026/"},
+{c:"Спорт",d:"2026-09-25",t:"Женская сборная по волейболу заняла 2 место на турнире ко Дню города",s:"Команда университета стала второй в турнире, который прошёл в Алматы в рамках праздничных мероприятий.",u:"https://alt.edu.kz/en/news/alt-university-womens-volleyball-team-takes-2nd-place-in-almaty-city-day-tournament/"},
+{c:"Международное",d:"2026-09-25",t:"Соглашение сблизило Алматы и Сюйчжоу",s:"21 сентября ALT University и китайский Kewen College при Jiangsu Normal University начали новый этап сотрудничества.",u:"https://alt.edu.kz/en/news/one-signature-that-brought-almaty-and-xuzhou-closer/"},
+{c:"Международное",d:"2026-09-25",t:"35 студентов прошли стажировку в Урумчи",s:"С 14 по 20 сентября группа ALT участвовала во втором сезоне международной стажировки в Urumqi Vocational University.",u:"https://alt.edu.kz/en/news/35-alt-students-complete-international-internship-at-urumqi-vocational-university-china/"},
+{c:"Международное",d:"2026-09-25",t:"Встреча с делегацией University of Sussex",s:"18 сентября университет принял делегацию из Великобритании.",u:"https://alt.edu.kz/en/news/alt-university-hosts-meeting-with-university-of-sussex-uk-delegation/"},
+{c:"Наука",d:"2026-09-23",t:"Учёные и инженеры из 24 стран собрались в Алматы",s:"В университете прошла международная научно-техническая конференция о проблемах транспорта.",u:"https://alt.edu.kz/en/news/scientists-and-engineers-from-24-countries-gather-in-almaty-to-shape-the-future-of-transportation/"},
+{c:"Международное",d:"2026-09-08",t:"Ознакомительная встреча с иностранными студентами",s:"4 сентября университет встретился с иностранными студентами бакалавриата, магистратуры и докторантуры набора 2026–2027.",u:"https://alt.edu.kz/en/news/alt-university-hosts-orientation-meeting-for-international-students/"}
+];
+const cats=["Все",...new Set(NEWS.map(n=>n.c))];
+let cat="Все";
+const $=id=>document.getElementById(id);
+const fmt=d=>new Date(d).toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"});
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function tabs(){$("tabs").innerHTML=cats.map(c=>`<button class="tab" aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("")}
+function render(){
+const q=$("q").value.trim().toLowerCase();
+const list=NEWS.filter(n=>(cat==="Все"||n.c===cat)&&(n.t+n.s).toLowerCase().includes(q));
+const [h,...rest]=list;
+$("top").hidden=!h;
+if(h)$("top").innerHTML=`<span class="tag">${h.c}</span><h2>${esc(h.t)}</h2><p>${esc(h.s)}</p><p style="margin-top:12px"><a href="${h.u}" style="color:var(--hl);font-weight:600" target="_blank" rel="noopener">Читать на сайте вуза</a></p>`;
+$("grid").innerHTML=rest.map(n=>`<article class="card"><span><span class="tag">${n.c}</span></span><h3>${esc(n.t)}</h3><time datetime="${n.d}">${fmt(n.d)}</time><p>${esc(n.s)}</p><a class="more" href="${n.u}" target="_blank" rel="noopener">Читать на сайте вуза</a></article>`).join("");
+$("empty").hidden=list.length>0;
+}
+$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;cat=b.dataset.c;tabs();render()};
+$("q").oninput=render;
+tabs();render();
+</script>
+</body>
+</html>
